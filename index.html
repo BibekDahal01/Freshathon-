@@ -3,13 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HealthGuardian - Instant. Intelligent. Lifesaving.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <h1>Jay shree ram </h1>
-    <h1> radha radha radha </h1>
+    <!-- Main Navigation -->
+    <header>
+        <div class="container">
+            <h1>HealthGuardian</h1>
+            <p>Instant. Intelligent. Lifesaving.</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#emergency">Emergency</a></li>
+                    <li><a href="#hospital-finder">Hospitals</a></li>
+                    <li><a href="#ai-assistant">AI Assistant</a></li>
+                    <li><a href="#blood-bank">Blood Banks</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <h1>Ravi</h1>
-    <h1>ram ram </h1>
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section home-section">
+            <div class="container">
+                <h2>Your Lifesaving Partner in Emergencies</h2>
+                <p>Connecting you with hospitals, doctors, and life-saving resources in real time.</p>
+                <div class="cta-buttons">
+                    <a href="#emergency" class="btn emergency">Emergency Help</a>
+                    <a href="#hospital-finder" class="btn">Find Hospitals</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon emergency-icon"></div>
+                        <h3>Emergency Response</h3>
+                        <p>One-tap SOS button alerts nearby ambulances, hospitals, and trained volunteers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon hospital-icon"></div>
+                        <h3>Smart Hospital Search</h3>
+                        <p>Find hospitals with live wait times and availability data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon ai-icon"></div>
+                        <h3>AI Health Assistant</h3>
+                        <p>Get instant guidance when professional help isn't available.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon blood-icon"></div>
+                        <h3>Blood Bank Finder</h3>
+                        <p>Locate nearby blood banks with real-time inventory levels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Section -->
+        <section id="emergency" class="section emergency-section hidden">
+            <div class="container">
+                <h2>Emergency Assistance</h2>
+                <p class="subtitle">Tap the button below to alert nearby responders</p>
+                
+                <div class="sos-button" id="sosButton">
+                    <div class="sos-circle">
+                        <span>SOS</span>
+                    </div>
+                    <p class="instruction">Press and hold for 3 seconds</p>
+                </div>
+                
+                <div class="emergency-info hidden" id="emergencyInfo">
+                    <h3>Help is on the way!</h3>
+                    <p>We've alerted the nearest emergency services and volunteers.</p>
+                    <div class="responders-info">
+                        <div class="responder">
+                            <div class="icon ambulance"></div>
+                            <p>Ambulance: <span id="ambulanceTime">3-5</span> min</p>
+                        </div>
+                        <div class="responder">
+                            <div class="icon volunteer"></div>
+                            <p>First Responder: <span id="volunteerTime">2-4</span> min</p>
+                        </div>
+                    </div>
+                    <div class="location-map" id="locationMap">
+                        <!-- Map will be loaded here via JavaScript -->
+                    </div>
+                    <div class="emergency-tips">
+                        <h4>What to do now:</h4>
+                        <ul id="emergencyTipsList">
+                            <!-- Tips will be loaded based on emergency type -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="emergency-types">
+                    <h3>Select Emergency Type</h3>
+                    <div class="type-buttons">
+                        <button class="type-btn" data-type="cardiac">Cardiac</button>
+                        <button class="type-btn" data-type="trauma">Trauma</button>
+                        <button class="type-btn" data-type="stroke">Stroke</button>
+                        <button class="type-btn" data-type="respiratory">Respiratory</button>
+                        <button class="type-btn" data-type="other">Other</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hospital Finder Section -->
+        <section id="hospital-finder" class="section hospital-finder-section hidden">
+            <div class="container">
+                <h2>Find Hospitals Near You</h2>
+                <p class="subtitle">View real-time wait times and availability</p>
+                
+                <div class="search-controls">
+                    <div class="search-box">
+                        <input type="text" id="locationInput" placeholder="Enter location or use current">
+                        <button id="useCurrentLocation">
+                            <span class="icon location-icon"></span>
+                        </button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="specialtyFilter">
+                            <option value="">All Specialties</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="trauma">Trauma</option>
+                            <option value="neurology">Neurology</option>
+                        </select>
+                        <select id="distanceFilter">
+                            <option value="5">Within 5 km</option>
+                            <option value="10">Within 10 km</option>
+                            <option value="20">Within 20 km</option>
+                            <option value="50">Within 50 km</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="hospital-list-container">
+                    <div class="sort-options">
+                        <span>Sort by:</span>
+                        <button class="sort-btn active" data-sort="distance">Distance</button>
+                        <button class="sort-btn" data-sort="wait">Wait Time</button>
+                        <button class="sort-btn" data-sort="rating">Rating</button>
+                    </div>
+                    
+                    <div class="hospital-list" id="hospitalList">
+                        <!-- Hospitals will be loaded here via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <div class="hospital-map" id="hospitalMap">
+                        <!-- Map will be loaded here via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section id="ai-assistant" class="section ai-assistant-section hidden">
+            <div class="container">
+                <h2>AI Health Assistant</h2>
+                <p class="subtitle">Get immediate guidance for your health concerns</p>
+                
+                <div class="ai-interface">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">
+                                <p>Hello! I'm your HealthGuardian AI assistant. How can I help you today? You can describe your symptoms or upload an image of a medical concern.</p>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="userMessage" placeholder="Describe your symptoms...">
+                            <button id="sendMessage">Send</button>
+                            <label for="imageUpload" class="upload-btn">
+                                <span class="icon upload-icon"></span>
+                                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-actions">
+                        <h3>Quick Help</h3>
+                        <div class="action-buttons">
+                            <button class="action-btn" data-symptom="fever">Fever</button>
+                            <button class="action-btn" data-symptom="headache">Headache</button>
+                            <button class="action-btn" data-symptom="rash">Skin Rash</button>
+                            <button class="action-btn" data-symptom="pain">Chest Pain</button>
+                            <button class="action-btn" data-symptom="burn">Burn</button>
+                            <button class="action-btn" data-symptom="cut">Cut/Wound</button>
+                        </div>
+                    </div>
+                    
+                    <div class="first-aid-guides">
+                        <h3>First Aid Guides</h3>
+                        <div class="guides-grid">
+                            <div class="guide-card" data-guide="cpr">
+                                <div class="guide-icon cpr-icon"></div>
+                                <h4>CPR</h4>
+                            </div>
+                            <div class="guide-card" data-guide="choking">
+                                <div class="guide-icon choking-icon"></div>
+                                <h4>Choking</h4>
+                            </div>
+                            <div class="guide-card" data-guide="bleeding">
+                                <div class="guide-icon bleeding-icon"></div>
+                                <h4>Bleeding</h4>
+                            </div>
+                            <div class="guide-card" data-guide="stroke">
+                                <div class="guide-icon stroke-icon"></div>
+                                <h4>Stroke</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blood Bank Section -->
+        <section id="blood-bank" class="section blood-bank-section hidden">
+            <div class="container">
+                <h2>Blood Bank Finder</h2>
+                <p class="subtitle">Find nearby blood banks with real-time inventory</p>
+                
+                <div class="blood-search">
+                    <div class="search-box">
+                        <input type="text" id="bloodLocationInput" placeholder="Enter location or use current">
+                        <button id="useCurrentLocationBlood">
+                            <span class="icon location-icon"></span>
+                        </button>
+                    </div>
+                    <div class="blood-type-selector">
+                        <label for="bloodType">Blood Type:</label>
+                        <select id="bloodType">
+                            <option value="all">All Types</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="blood-bank-list" id="bloodBankList">
+                    <!-- Blood banks will be loaded here via JavaScript -->
+                </div>
+                
+                <div class="donation-info">
+                    <h3>Become a Blood Donor</h3>
+                    <p>Join our network of life-savers and earn rewards for your donations.</p>
+                    <button id="registerDonor" class="btn emergency">Register as Donor</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HealthGuardian</h3>
+                    <p>Reducing emergency response times through technology and community.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#emergency">Emergency Help</a></li>
+                        <li><a href="#hospital-finder">Find Hospitals</a></li>
+                        <li><a href="#ai-assistant">AI Assistant</a></li>
+                        <li><a href="#blood-bank">Blood Banks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>support@healthguardian.com</p>
+                    <p>Emergency: 911 (or local emergency number)</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 HealthGuardian. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
